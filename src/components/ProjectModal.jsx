@@ -19,7 +19,8 @@ export default function ProjectModal({ project, onClose }) {
 
   return (
     <dialog ref={ref} className="modal" onClose={onClose}>
-      <div className="modal-box w-11/12 max-w-4xl bg-base-100">
+      <div className="modal-box w-11/12 max-w-4xl bg-base-100/90 backdrop-blur ring-1 ring-base-300">
+        <div className="mb-3 h-1 w-full rounded-full bg-linear-to-r from-primary/70 via-secondary/40 to-accent/60" />
         {!project ? null : (
           <>
             <div className="flex items-start justify-between gap-3">
@@ -34,25 +35,28 @@ export default function ProjectModal({ project, onClose }) {
 
             <div className="mt-4 grid gap-4 lg:grid-cols-2">
               <div className="space-y-4">
-                <div className="rounded-2xl border border-base-300 bg-base-200 p-4">
+                <div className="rounded-2xl border border-secondary/20 bg-secondary/5 p-4">
                   <div className="font-semibold">Description</div>
                   <p className="mt-2 text-sm leading-relaxed opacity-80">
                     {project.description}
                   </p>
                 </div>
 
-                <div className="rounded-2xl border border-base-300 bg-base-200 p-4">
+                <div className="rounded-2xl border border-secondary/20 bg-secondary/5 p-4">
                   <div className="font-semibold">Technology</div>
                   <div className="mt-2 flex flex-wrap gap-2">
                     {project.technologies.map((t) => (
-                      <span key={t} className="badge badge-outline">
+                      <span
+                        key={t}
+                        className="badge badge-outline badge-secondary"
+                      >
                         {t}
                       </span>
                     ))}
                   </div>
                 </div>
 
-                <div className="rounded-2xl border border-base-300 bg-base-200 p-4">
+                <div className="rounded-2xl border border-secondary/20 bg-secondary/5 p-4">
                   <div className="font-semibold">How to use</div>
                   <ul className="mt-2 list-disc space-y-1 pl-5 text-sm opacity-80">
                     {project.howToUse.map((s, i) => (
@@ -87,7 +91,7 @@ export default function ProjectModal({ project, onClose }) {
                 </div>
               </div>
 
-              <div className="rounded-2xl border border-base-300 bg-base-200 p-4">
+              <div className="rounded-2xl border border-secondary/20 bg-secondary/5 p-4">
                 <div className="font-semibold">Images</div>
                 <div className="mt-3 grid gap-3">
                   {(project.gallery?.length

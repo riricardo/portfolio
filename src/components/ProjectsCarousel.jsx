@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { PROJECT_STATUS } from "../data/projects";
 import ProjectCard from "./ProjectCard";
 import ProjectModal from "./ProjectModal";
+import SectionTitle from "./SectionTitle";
 
 export default function ProjectsCarousel({ projects }) {
   const [selected, setSelected] = useState(null);
@@ -18,32 +19,22 @@ export default function ProjectsCarousel({ projects }) {
 
   return (
     <section id="projects" className="mt-8">
-      <div className="mb-3 flex flex-wrap items-end justify-between gap-2">
-        <h2 className="text-xl font-semibold">Projects</h2>
-        <div className="text-sm opacity-70">
-          Live {counts.live} · In progress {counts.progress} · Not started{" "}
-          {counts.not}
-        </div>
-      </div>
+      <SectionTitle
+        right={`Live ${counts.live} · In progress ${counts.progress} · Not started ${counts.not}`}
+      >
+        Projects
+      </SectionTitle>
 
-      <div className="card bg-base-100 shadow-sm">
+      <div className="card bg-base-100/80 shadow-sm ring-1 ring-base-300 backdrop-blur">
         <div className="card-body p-3 sm:p-4">
           <div
-            className="
-              flex gap-3 overflow-x-auto pb-2
-              [scrollbar-width:thin]
-              snap-x snap-mandatory
-            "
+            className="flex gap-3 overflow-x-auto pb-2 [scrollbar-width:thin] snap-x snap-mandatory"
             aria-label="Projects carousel"
           >
             {projects.map((p) => (
               <div
                 key={p.id}
-                className="
-                  min-w-[82%] snap-start
-                  sm:min-w-[48%]
-                  lg:min-w-[32%]
-                "
+                className="min-w-[82%] snap-start sm:min-w-[48%] lg:min-w-[32%]"
               >
                 <ProjectCard project={p} onOpen={() => setSelected(p)} />
               </div>

@@ -4,13 +4,17 @@ export const PROJECT_STATUS = {
   LIVE: "Live",
 };
 
+import cchatImg from "../assets/projects/cchat/cchat.png";
+import ctrainerImg from "../assets/projects/ctrainer/ctrainer.png";
+import qhubImg from "../assets/projects/qhub/qhub.png";
+
 export const projects = [
   {
     id: "cchat",
     name: "CChat",
     tagline: "Multi-tenant chat platform with modern auth and search.",
     status: PROJECT_STATUS.IN_PROGRESS,
-    cover: "/src/assets/projects/cchat.jpg",
+    cover: cchatImg,
     description:
       "A scalable chat app designed for whitelabel/multi-tenant use. Includes advanced authentication flows and search for fast message retrieval.",
     technologies: ["React", "TypeScript", "Firebase", "ElasticSearch"],
@@ -28,7 +32,7 @@ export const projects = [
     name: "CTrainer",
     tagline: "Workout planning app with clean UX and tracking.",
     status: PROJECT_STATUS.LIVE,
-    cover: "/src/assets/projects/ctrainer.jpg",
+    cover: ctrainerImg,
     description:
       "A training planner focused on structured routines and progress. Built with a mobile-first mindset and clear workout flows.",
     technologies: ["Flutter", "Dart", "Firebase"],
@@ -42,7 +46,7 @@ export const projects = [
     name: "QHub",
     tagline: "Service management system concept for CardonaTech.",
     status: PROJECT_STATUS.NOT_STARTED,
-    cover: "/src/assets/projects/qhub.jpg",
+    cover: qhubImg,
     description:
       "Planned service management platform (work orders, customers, scheduling). Currently in design phase.",
     technologies: ["React", "Node.js", "PostgreSQL"],

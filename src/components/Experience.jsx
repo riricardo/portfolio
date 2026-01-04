@@ -1,3 +1,5 @@
+import SectionTitle from "./SectionTitle";
+
 export default function Experience() {
   const items = [
     {
@@ -13,17 +15,19 @@ export default function Experience() {
   ];
 
   return (
-    <section className="mt-10">
-      <h2 className="text-xl font-semibold">Experience</h2>
+    <section className="mt-10" id="experience">
+      <SectionTitle>Experience</SectionTitle>
 
       <div className="mt-3 grid gap-3">
         {items.map((it) => (
           <div
             key={it.title}
-            className="card bg-base-100 shadow-sm ring-1 ring-base-300"
+            className="card bg-base-100/80 shadow-sm ring-1 ring-base-300 backdrop-blur"
           >
             <div className="card-body p-5">
-              <div className="font-semibold">{it.title}</div>
+              <div className="flex items-start justify-between gap-3">
+                <div className="font-semibold">{it.title}</div>
+              </div>
               <p className="mt-2 text-sm leading-relaxed opacity-80">
                 {it.detail}
               </p>
