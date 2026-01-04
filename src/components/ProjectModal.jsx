@@ -83,7 +83,7 @@ export default function ProjectModal({ project, onClose }) {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      Open App / API
+                      Open App
                     </a>
                   ) : (
                     <span className="badge badge-ghost">No live link yet</span>

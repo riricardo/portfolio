@@ -5,12 +5,19 @@ export default function Skills() {
     {
       title: "Frontend",
       tone: "primary",
-      items: ["React", "TypeScript", "Vite", "Responsive UI", "UX fundamentals"],
+      items: ["React", "JavaScript", "WebForms", "ASP.NET MVC"],
     },
     {
       title: "Backend",
       tone: "secondary",
-      items: ["Node.js", "Firebase Functions", ".NET / C#", "REST APIs", "Auth"],
+      items: [
+        "Node.js",
+        "Firebase",
+        ".NET / C#",
+        "REST APIs",
+        "Token Auth",
+        "SQL",
+      ],
     },
     {
       title: "Mobile",
@@ -18,15 +25,22 @@ export default function Skills() {
       items: ["Flutter", "Dart"],
     },
     {
+      title: "Desktop",
+      tone: "secondary",
+      items: ["Delphi"],
+    },
+    {
       title: "DevOps",
       tone: "neutral",
-      items: ["GitHub Actions", "CI/CD", "Deployments", "Env management"],
+      items: ["GitHub Actions", "Deploy"],
     },
   ];
 
   const toneBadge = (tone) => {
-    if (tone === "primary") return "bg-primary/10 text-primary border-primary/20";
-    if (tone === "secondary") return "bg-secondary/10 text-secondary border-secondary/20";
+    if (tone === "primary")
+      return "bg-primary/10 text-primary border-primary/20";
+    if (tone === "secondary")
+      return "bg-secondary/10 text-secondary border-secondary/20";
     if (tone === "accent") return "bg-accent/10 text-accent border-accent/20";
     return "bg-base-200 text-base-content border-base-300";
   };
@@ -44,7 +58,17 @@ export default function Skills() {
             <div className="card-body p-5">
               <div className="flex items-center justify-between gap-3">
                 <div className="font-semibold">{g.title}</div>
-                <div className={`h-1 w-16 rounded-full ${g.tone === "primary" ? "bg-linear-to-r from-primary to-primary/20" : g.tone === "secondary" ? "bg-linear-to-r from-secondary to-secondary/20" : g.tone === "accent" ? "bg-linear-to-r from-accent to-accent/20" : "bg-linear-to-r from-base-content/20 to-base-content/5"}`} />
+                <div
+                  className={`h-1 w-16 rounded-full ${
+                    g.tone === "primary"
+                      ? "bg-linear-to-r from-primary to-primary/20"
+                      : g.tone === "secondary"
+                      ? "bg-linear-to-r from-secondary to-secondary/20"
+                      : g.tone === "accent"
+                      ? "bg-linear-to-r from-accent to-accent/20"
+                      : "bg-linear-to-r from-base-content/20 to-base-content/5"
+                  }`}
+                />
               </div>
 
               <div className="mt-3 flex flex-wrap gap-2">

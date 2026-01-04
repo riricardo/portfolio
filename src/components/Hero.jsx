@@ -19,7 +19,7 @@ export default function Hero({ profile }) {
                   {profile.name}
                 </h1>
 
-                <p className="mt-3 max-w-prose text-base leading-relaxed opacity-80">
+                <p className="mt-3 max-w-prose text-base leading-relaxed opacity-80 whitespace-pre-line">
                   {profile.description}
                 </p>
 
