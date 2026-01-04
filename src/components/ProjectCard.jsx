@@ -38,7 +38,7 @@ export default function ProjectCard({ project, onOpen }) {
           src={project.cover}
           alt={`${project.name} cover`}
           loading="lazy"
-          className="h-40 w-full rounded-xl object-cover ring-1 ring-base-300"
+          className="h-40 w-full rounded-xl object-cover ring-1 ring-base-300 bg-white"
         />
       </figure>
 
