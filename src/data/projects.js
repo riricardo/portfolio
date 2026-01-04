@@ -5,27 +5,29 @@ export const PROJECT_STATUS = {
 };
 
 import cchatImg from "../assets/projects/cchat/cchat.png";
+import cchatChatImg from "../assets/projects/cchat/chat.png";
+import cchatChatsImg from "../assets/projects/cchat/chats.png";
+import cchatLoginImg from "../assets/projects/cchat/login.png";
+import cchatSettingsImg from "../assets/projects/cchat/settings.png";
+
 import ctrainerImg from "../assets/projects/ctrainer/ctrainer.png";
+
 import qhubImg from "../assets/projects/qhub/qhub.png";
 
 export const projects = [
   {
     id: "cchat",
     name: "CChat",
-    tagline: "Multi-tenant chat platform with modern auth and search.",
+    tagline: "A whatsapp clone with realtime messaging.",
     status: PROJECT_STATUS.IN_PROGRESS,
     cover: cchatImg,
     description:
-      "A scalable chat app designed for whitelabel/multi-tenant use. Includes advanced authentication flows and search for fast message retrieval.",
-    technologies: ["React", "TypeScript", "Firebase", "ElasticSearch"],
-    howToUse: [
-      "Sign in and create or join a workspace.",
-      "Start chats, send messages, and search conversations.",
-      "Admins manage tenants and theming.",
-    ],
-    repoUrl: "https://github.com/yourname/cchat-frontend",
-    liveUrl: "https://your-live-app-url.com",
-    gallery: ["/src/assets/projects/cchat.jpg"],
+      "A web application made in React and with backend in Firebase. The app has a login with google authentication, allows users to create chats and groups, and message in real time. The technology used was the firebase firestore and the firebase storage for the images. The users are searched with ElasticSearch that is hosted in a VPS server. The project counts with CI/CD with GitHub Actions connected to firebase platform. It works for mobile and for desktop. This application was also configured a cusom domain and SSL certificate (https://cchat.uk).",
+    technologies: ["React", "JavaScript", "Firebase", "ElasticSearch"],
+    howToUse: ["Sign in.", "Start chats, create groups, send messages."],
+    repoUrl: "https://github.com/riricardo/cchat-frontend",
+    liveUrl: "https://cchat.uk",
+    gallery: [cchatChatImg, cchatChatsImg, cchatLoginImg, cchatSettingsImg],
   },
   {
     id: "ctrainer",

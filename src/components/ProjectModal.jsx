@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import ProjectImageCarousel from "./ProjectImageCarousel";
 
 export default function ProjectModal({ project, onClose }) {
   const ref = useRef(null);
@@ -93,20 +94,7 @@ export default function ProjectModal({ project, onClose }) {
 
               <div className="rounded-2xl border border-secondary/20 bg-secondary/5 p-4">
                 <div className="font-semibold">Images</div>
-                <div className="mt-3 grid gap-3">
-                  {(project.gallery?.length
-                    ? project.gallery
-                    : [project.cover]
-                  ).map((src, i) => (
-                    <img
-                      key={i}
-                      src={src}
-                      alt={`${project.name} screenshot ${i + 1}`}
-                      loading="lazy"
-                      className="w-full rounded-xl object-cover ring-1 ring-base-300"
-                    />
-                  ))}
-                </div>
+                <ProjectImageCarousel project={project} />
               </div>
             </div>
           </>
