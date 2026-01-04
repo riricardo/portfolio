@@ -3,3 +3,14 @@
 @plugin "daisyui" {
   themes: light, dark --prefersdark, corporate --default;
 }
+
+/* Smooth anchors */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Nicer focus for keyboard users */
+:focus-visible {
+  outline: 2px solid hsl(var(--p));
+  outline-offset: 2px;
+}
