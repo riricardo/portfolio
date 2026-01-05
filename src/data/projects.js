@@ -14,6 +14,13 @@ import ctrainerImg from "../assets/projects/ctrainer/ctrainer.png";
 
 import qhubImg from "../assets/projects/qhub/qhub.png";
 
+import richErrorLogLogoImg from "../assets/projects/rich-error-log/rich-error-log.png";
+import richErrorLogDashboardImg from "../assets/projects/rich-error-log/dashboard.png";
+import richErrorLogLoginImg from "../assets/projects/rich-error-log/login.png";
+import richErrorLogPostErrorImg from "../assets/projects/rich-error-log/post-error.png";
+import richErrorLogPostErrorBodyImg from "../assets/projects/rich-error-log/post-error-body.png";
+import richErrorLogTenantsImg from "../assets/projects/rich-error-log/tenants.png";
+
 export const projects = [
   {
     id: "cchat",
@@ -28,6 +35,32 @@ export const projects = [
     repoUrl: "https://github.com/riricardo/cchat-frontend",
     liveUrl: "https://cchat.uk",
     gallery: [cchatChatImg, cchatChatsImg, cchatLoginImg, cchatSettingsImg],
+  },
+  {
+    id: "rich-error-log",
+    name: "Rich Error Log",
+    tagline: "Web app tailored to store application errors.",
+    status: PROJECT_STATUS.LIVE,
+    cover: richErrorLogLogoImg,
+    description:
+      "This project is an error log website built to collect, display, and analyze errors occurring in web applications. It helps developers monitor and debug issues efficiently by providing a centralized platform for error reporting and tracking.",
+    technologies: ["React", "Node.js", "MongoDB", "Firebase hosting"],
+    howToUse: [
+      "Log in (use login: admin, password: 123)",
+      "View errors",
+      "Filter and search",
+      "Create new API key",
+      "Post errors to the API using the key (the body must have a title and a message)",
+    ],
+    repoUrl: "https://github.com/riricardo/rich-error-log-frontend",
+    liveUrl: "https://rich-error-log.web.app/",
+    gallery: [
+      richErrorLogLoginImg,
+      richErrorLogDashboardImg,
+      richErrorLogTenantsImg,
+      richErrorLogPostErrorImg,
+      richErrorLogPostErrorBodyImg,
+    ],
   },
   {
     id: "ctrainer",
@@ -52,9 +85,9 @@ export const projects = [
     cover: qhubImg,
     description:
       "Planned service management platform (work orders, customers, scheduling). Currently in design phase.",
-    technologies: ["React", "Node.js", "PostgreSQL"],
+    technologies: ["React", "Node.js", "PostgreSQL", "Firebase Auth"],
     howToUse: ["(Coming soon)"],
-    repoUrl: "https://github.com/yourname/qhub",
+    repoUrl: "",
     liveUrl: "",
     gallery: ["/src/assets/projects/qhub.jpg"],
   },

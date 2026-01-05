@@ -8,5 +8,6 @@ export const profile = {
     email: "ricardo.augusto.cardona@gmail.com",
     phone: "+353 83 189 4310",
     linkedin: "https://www.linkedin.com/in/ricardo-augusto-cardona/",
+    github: "https://github.com/riricardo",
   },
 };

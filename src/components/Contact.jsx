@@ -48,6 +48,11 @@ export default function Contact({ profile }) {
               <div className="text-sm font-semibold">Location</div>
               <div className="text-sm opacity-80">{profile.location}</div>
             </div>
+
+            <div className="rounded-2xl border border-secondary/20 bg-secondary/5 p-4">
+              <div className="text-sm font-semibold">Github</div>
+              <div className="text-sm opacity-80">{contacts.github}</div>
+            </div>
           </div>
         </div>
       </div>
