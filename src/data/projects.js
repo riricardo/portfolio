@@ -89,6 +89,6 @@ export const projects = [
     howToUse: ["(Coming soon)"],
     repoUrl: "",
     liveUrl: "",
-    gallery: ["/src/assets/projects/qhub.jpg"],
+    gallery: [],
   },
 ];
