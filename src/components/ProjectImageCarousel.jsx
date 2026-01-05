@@ -1,6 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 
-export default function ProjectImageCarousel({ project }) {
+export default function ProjectImageCarousel({
+  project,
+  onOpenPreview,
+  isPreviewOpen = false,
+}) {
   const images = useMemo(() => {
     const list = project?.gallery?.length
       ? project.gallery
@@ -13,42 +17,55 @@ export default function ProjectImageCarousel({ project }) {
   // Reset when project changes
   useEffect(() => setIndex(0), [project?.id]);
 
-  // Keyboard navigation
+  const prev = () => setIndex((i) => (i - 1 + images.length) % images.length);
+  const next = () => setIndex((i) => (i + 1) % images.length);
+
+  // Keyboard navigation (carousel) — but pause while preview is open
   useEffect(() => {
+    if (!images.length || isPreviewOpen) return;
+
     function onKeyDown(e) {
-      if (!images.length) return;
-      if (e.key === "ArrowLeft")
-        setIndex((i) => (i - 1 + images.length) % images.length);
-      if (e.key === "ArrowRight") setIndex((i) => (i + 1) % images.length);
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
     }
+
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [images.length]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [images.length, isPreviewOpen]);
 
   if (!images.length) {
     return <div className="mt-2 text-sm opacity-70">No images available.</div>;
   }
 
-  const prev = () => setIndex((i) => (i - 1 + images.length) % images.length);
-  const next = () => setIndex((i) => (i + 1) % images.length);
-
   return (
     <div className="mt-3">
       {/* Image frame */}
       <div className="relative overflow-hidden rounded-xl ring-1 ring-base-300 bg-base-200">
-        <img
-          src={images[index]}
-          alt={`${project.name} screenshot ${index + 1}`}
-          loading="lazy"
-          className="h-56 w-full object-contain p-3 sm:h-64"
-        />
+        {/* Clickable image */}
+        <button
+          type="button"
+          onClick={() => onOpenPreview?.({ images, index })}
+          className="block w-full"
+          aria-label="Open image in full size"
+        >
+          <img
+            src={images[index]}
+            alt={`${project.name} screenshot ${index + 1}`}
+            loading="lazy"
+            className="h-56 w-full object-contain p-3 sm:h-64"
+          />
+        </button>
 
         {/* Prev/Next */}
         {images.length > 1 && (
           <>
             <button
               type="button"
-              onClick={prev}
+              onClick={(e) => {
+                e.stopPropagation();
+                prev();
+              }}
               className="btn btn-circle btn-sm absolute left-2 top-1/2 -translate-y-1/2 bg-base-100/80 backdrop-blur border-base-300"
               aria-label="Previous image"
             >
@@ -56,7 +73,10 @@ export default function ProjectImageCarousel({ project }) {
             </button>
             <button
               type="button"
-              onClick={next}
+              onClick={(e) => {
+                e.stopPropagation();
+                next();
+              }}
               className="btn btn-circle btn-sm absolute right-2 top-1/2 -translate-y-1/2 bg-base-100/80 backdrop-blur border-base-300"
               aria-label="Next image"
             >
@@ -87,31 +107,6 @@ export default function ProjectImageCarousel({ project }) {
           {index + 1} / {images.length}
         </div>
       </div>
-
-      {/* Thumbnails (optional but nice) */}
-      {images.length > 1 && (
-        <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
-          {images.map((src, i) => (
-            <button
-              key={src + i}
-              type="button"
-              onClick={() => setIndex(i)}
-              className={[
-                "shrink-0 overflow-hidden rounded-lg ring-1",
-                i === index ? "ring-primary" : "ring-base-300",
-              ].join(" ")}
-              aria-label={`Select image ${i + 1}`}
-            >
-              <img
-                src={src}
-                alt={`${project.name} thumbnail ${i + 1}`}
-                loading="lazy"
-                className="h-14 w-20 object-cover"
-              />
-            </button>
-          ))}
-        </div>
-      )}
     </div>
   );
 }
