@@ -46,7 +46,7 @@ export default function ProjectModal({ project, onClose }) {
   return (
     <>
       <dialog ref={ref} className="modal" onClose={onClose}>
-        <div className="modal-box w-11/12 max-w-4xl bg-base-100/90 backdrop-blur ring-1 ring-base-300">
+        <div className="modal-box max-w-[calc(100vw)] max-h-[calc(95vh)] bg-base-100/90 backdrop-blur ring-1 ring-base-300">
           <div className="mb-3 h-1 w-full rounded-full bg-linear-to-r from-primary/70 via-secondary/40 to-accent/60" />
 
           {!project ? null : (
