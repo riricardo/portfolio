@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ProjectImageCarousel from "./ProjectImageCarousel";
 import ImageLightbox from "./ImageLightbox";
 
@@ -16,19 +16,16 @@ export default function ProjectModal({ project, onClose }) {
     if (!project && dlg.open) dlg.close();
   }, [project]);
 
-  // Reset preview when changing project / closing modal
-  useEffect(() => {
-    setPreview(null);
-  }, [project?.id]);
-
   function close() {
     const dlg = ref.current;
     if (dlg?.open) dlg.close();
     onClose();
   }
 
-  const previewImages = preview?.images ?? [];
-  const previewIndex = preview?.index ?? 0;
+  const isPreviewOpen =
+    !!preview && !!project?.id && preview?.projectId === project?.id;
+  const previewImages = isPreviewOpen ? preview?.images ?? [] : [];
+  const previewIndex = isPreviewOpen ? preview?.index ?? 0 : 0;
 
   const prevPreview = () => {
     if (!previewImages.length) return;
@@ -131,7 +128,7 @@ export default function ProjectModal({ project, onClose }) {
                     project={project}
                     isPreviewOpen={!!preview}
                     onOpenPreview={({ images, index }) =>
-                      setPreview({ images, index })
+                      setPreview({ projectId: project?.id, images, index })
                     }
                   />
 
@@ -149,13 +146,13 @@ export default function ProjectModal({ project, onClose }) {
         </form>
       </dialog>
 
-      {/* ✅ Lightbox rendered OUTSIDE the project dialog (sibling) */}
+      {/* Lightbox rendered outside the project dialog (sibling) */}
       <ImageLightbox
-        isOpen={!!preview}
+        isOpen={isPreviewOpen}
         images={previewImages}
         index={previewIndex}
         title={
-          project ? `${project.name} — image ${previewIndex + 1}` : "Image"
+          project ? `${project.name} - image ${previewIndex + 1}` : "Image"
         }
         onClose={() => setPreview(null)}
         onPrev={prevPreview}
