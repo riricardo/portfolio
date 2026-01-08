@@ -6,7 +6,7 @@ export default function ProjectModal({ project, onClose }) {
   const ref = useRef(null);
 
   // Preview state (lightbox)
-  const [preview, setPreview] = useState(null); // { images: [], index: number }
+  const [preview, setPreview] = useState(null); // { projectId, images: [], index: number }
 
   useEffect(() => {
     const dlg = ref.current;
@@ -19,11 +19,16 @@ export default function ProjectModal({ project, onClose }) {
   function close() {
     const dlg = ref.current;
     if (dlg?.open) dlg.close();
-    onClose();
+
+    // close the lightbox too (prevents weird states)
+    setPreview(null);
+
+    onClose?.();
   }
 
   const isPreviewOpen =
     !!preview && !!project?.id && preview?.projectId === project?.id;
+
   const previewImages = isPreviewOpen ? preview?.images ?? [] : [];
   const previewIndex = isPreviewOpen ? preview?.index ?? 0 : 0;
 
@@ -45,8 +50,23 @@ export default function ProjectModal({ project, onClose }) {
 
   return (
     <>
-      <dialog ref={ref} className="modal" onClose={onClose}>
-        <div className="modal-box max-w-[calc(100vw)] max-h-[calc(95vh)] bg-base-100/90 backdrop-blur ring-1 ring-base-300">
+      {/* IMPORTANT: onClose must call close() so backdrop/ESC behaves correctly */}
+      <dialog ref={ref} className="modal" onClose={close}>
+        {/* Scrollable modal box for mobile */}
+        <div
+          className="
+            modal-box
+            w-[calc(100vw-1.5rem)]
+            max-w-none
+            max-h-[calc(100dvh-1.5rem)]
+            overflow-y-auto
+            overscroll-contain
+            bg-base-100/90
+            backdrop-blur
+            ring-1
+            ring-base-300
+          "
+        >
           <div className="mb-3 h-1 w-full rounded-full bg-linear-to-r from-primary/70 via-secondary/40 to-accent/60" />
 
           {!project ? null : (
@@ -56,7 +76,9 @@ export default function ProjectModal({ project, onClose }) {
                   <h3 className="text-lg font-semibold">{project.name}</h3>
                   <p className="mt-1 text-sm opacity-70">{project.tagline}</p>
                 </div>
-                <button className="btn btn-sm" onClick={close}>
+
+                {/* keep close button visible and not shrinking */}
+                <button className="btn btn-sm shrink-0" onClick={close}>
                   Close
                 </button>
               </div>
@@ -104,6 +126,7 @@ export default function ProjectModal({ project, onClose }) {
                         Repository
                       </a>
                     )}
+
                     {project.liveUrl ? (
                       <a
                         className="btn btn-primary"
@@ -126,7 +149,7 @@ export default function ProjectModal({ project, onClose }) {
 
                   <ProjectImageCarousel
                     project={project}
-                    isPreviewOpen={!!preview}
+                    isPreviewOpen={isPreviewOpen}
                     onOpenPreview={({ images, index }) =>
                       setPreview({ projectId: project?.id, images, index })
                     }
@@ -141,6 +164,7 @@ export default function ProjectModal({ project, onClose }) {
           )}
         </div>
 
+        {/* Backdrop click closes dialog; we route to close() */}
         <form method="dialog" className="modal-backdrop">
           <button onClick={close}>close</button>
         </form>
